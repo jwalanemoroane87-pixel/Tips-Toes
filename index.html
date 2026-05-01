@@ -770,18 +770,9 @@ function updateDots(n){
 // SLOTS &mdash; fetch live bookings from Sheets before rendering
 // ============================================================
 async function loadSlots(){
-  selDate=document.getElementById('appt-date').value;
+  // selDate is set directly by bookCalSelectDay
   selTime='';
   if(!selDate) return;
-  // Block Mondays
-  const chosenDay = new Date(selDate + 'T12:00:00').getDay();
-  if(chosenDay === 1){
-    showToast('Sorry, we are closed on Mondays &#127800;');
-    document.getElementById('appt-date').value='';
-    selDate=''; selTime='';
-    document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">We are closed on Mondays &mdash; please pick another day</div>';
-    return;
-  }
   if(!selectedIds.length){
     document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0">Please go back and select a service first</div>';
     return;
@@ -917,7 +908,6 @@ function resetBooking(){
   selectedIds=[]; selDate=''; selTime=''; simultaneous=false;
   ['c-first','c-last','c-phone','c-email','c-address','c-suburb','c-notes'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('c-loctype').value='';
-  document.getElementById('appt-date').value='';
   document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">Pick a date above to see available times<br><span style="font-size:11px">We are closed on Mondays</span></div>';
   document.getElementById('selection-bar').classList.remove('visible');
   document.getElementById('simul-card').classList.remove('visible');
