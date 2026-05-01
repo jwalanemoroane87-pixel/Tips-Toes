@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tips & Toes &mdash; Mobile Nail Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#F4CECE;--rose:#D4869A;--deep:#6B2D45;--deepdark:#4A1E30;
+  --cream:#FDF8F5;--warm:#F7EDE8;--ink:#1E0F15;--muted:#9B7585;
+  --white:#FFFFFF;--green:#4A7C59;--red:#B83232;--gold:#C9924E;
+  --shadow-sm:0 2px 12px rgba(107,45,69,0.08);--shadow-md:0 6px 28px rgba(107,45,69,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;max-width:520px;margin:0 auto;overflow-x:hidden;-webkit-text-size-adjust:100%}
+ 
+.hero{background:var(--deepdark);padding:max(36px,calc(16px + env(safe-area-inset-top))) 24px 28px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,134,154,.25) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'&#10022;';position:absolute;bottom:16px;right:24px;font-size:48px;color:rgba(212,134,154,.12);line-height:1}
+.hero-brand{font-family:'Cormorant Garamond',serif;color:var(--blush);font-size:32px;font-weight:600;letter-spacing:.02em;line-height:1}
+.hero-brand em{display:block;font-style:italic;font-size:13px;font-family:'Jost',sans-serif;font-weight:300;color:var(--rose);letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
+.hero-sub{margin-top:10px;font-size:12px;color:rgba(244,206,206,.6);font-weight:300;line-height:1.5}
+ 
+.nav-wrap{background:var(--deepdark);padding:0 max(24px,env(safe-area-inset-left)) 16px}
+.nav{display:flex;gap:6px}
+.nav button{flex:1;padding:10px 6px;min-height:40px;border-radius:40px;border:1.5px solid rgba(212,134,154,.3);background:transparent;font-family:'Jost',sans-serif;font-size:10px;font-weight:500;color:var(--rose);cursor:pointer;transition:all .25s;letter-spacing:.04em;text-transform:uppercase;touch-action:manipulation}
+.nav button.active{background:var(--rose);border-color:var(--rose);color:var(--white)}
+.nav button.gold-btn{border-color:rgba(201,146,78,.4);color:var(--gold)}
+.nav button.gold-btn.active{background:var(--gold);border-color:var(--gold);color:var(--white)}
+.nav button.cancel-btn{border-color:rgba(184,50,50,.35);color:#C06060}
+.nav button.cancel-btn.active{background:var(--red);border-color:var(--red);color:var(--white)}
+.nav button.pay-btn{border-color:rgba(74,124,89,.4);color:#4A7C59}
+.nav button.pay-btn.active{background:#4A7C59;border-color:#4A7C59;color:var(--white)}
+ 
+.view{display:none;padding:24px 16px 80px;animation:fadeUp .3s ease}
+.view.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+ 
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--deep);margin-bottom:4px}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:300;line-height:1.5}
+ 
+.steps{display:flex;align-items:center;margin-bottom:28px}
+.step-dot{width:28px;height:28px;border-radius:50%;background:var(--warm);border:2px solid var(--blush);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--muted);flex-shrink:0;transition:all .3s}
+.step-dot.active{background:var(--deep);border-color:var(--deep);color:var(--white)}
+.step-dot.done{background:var(--green);border-color:var(--green);color:var(--white);font-size:13px}
+.step-line{flex:1;height:2px;background:var(--blush);transition:background .3s}
+.step-line.done{background:var(--green)}
+ 
+.form-step{display:none}.form-step.active{display:block}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:7px}
+input,select,textarea{width:100%;padding:13px 15px;border:1.5px solid var(--blush);border-radius:12px;background:var(--white);font-family:'Jost',sans-serif;font-size:16px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--deep);box-shadow:0 0 0 3px rgba(107,45,69,.08)}
+input::placeholder{color:#C5AAAF}
+textarea{resize:vertical;min-height:80px;font-size:14px}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239B7585' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ 
+.cat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin:20px 0 10px;padding-left:2px}
+.cat-label:first-child{margin-top:0}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.service-card{padding:14px 11px;min-height:64px;border:1.5px solid var(--blush);border-radius:12px;background:var(--white);cursor:pointer;text-align:center;transition:all .2s;position:relative;touch-action:manipulation;display:flex;flex-direction:column;justify-content:center}
+.service-card:hover{border-color:var(--rose)}
+.service-card.selected{background:var(--deep);border-color:var(--deep);box-shadow:var(--shadow-sm)}
+.service-card .check{position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--blush);background:var(--white);font-size:10px;display:flex;align-items:center;justify-content:center}
+.service-card.selected .check{background:var(--rose);border-color:var(--rose);color:var(--white)}
+.svc-name{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3}
+.service-card.selected .svc-name{color:var(--white)}
+.svc-meta{font-size:11px;color:var(--muted);margin-top:3px;font-weight:300}
+.service-card.selected .svc-meta{color:var(--blush)}
+ 
+.selection-bar{background:var(--deep);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:none}
+.selection-bar.visible{display:block}
+.selection-bar-title{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--blush);font-weight:600;margin-bottom:8px}
+.selection-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.selection-tag{background:rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--white);font-weight:500}
+.selection-totals{display:flex;gap:16px;flex-wrap:wrap}
+.sel-total{font-size:12px;color:var(--blush);font-weight:300}
+.sel-total strong{font-weight:600;color:var(--white)}
+.dur-note{font-size:11px;color:rgba(244,206,206,.7);margin-top:8px;font-style:italic;line-height:1.4}
+ 
+.simul-card{display:none;margin-bottom:16px;border-radius:16px;overflow:hidden;border:2px solid var(--rose);box-shadow:var(--shadow-sm)}
+.simul-card.visible{display:block}
+.simul-header{background:var(--deep);padding:14px 16px}
+.simul-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.simul-sub{font-size:11px;color:var(--blush);font-weight:300}
+.simul-options{background:var(--white);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.simul-btn{padding:12px 8px;min-height:52px;border-radius:10px;border:1.5px solid var(--blush);background:var(--white);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;text-align:center;transition:all .2s;line-height:1.3;touch-action:manipulation}
+.simul-btn.active{background:var(--deep);border-color:var(--deep);color:var(--white)}
+ 
+.time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.time-slot{padding:13px 6px;min-height:48px;border:1.5px solid var(--blush);border-radius:10px;background:var(--white);cursor:pointer;text-align:center;font-size:13px;font-weight:500;color:var(--ink);transition:all .2s;width:100%;font-family:'Jost',sans-serif;line-height:1.3;touch-action:manipulation}
+.time-slot:hover:not(.booked){border-color:var(--rose)}
+.time-slot.selected{background:var(--deep);border-color:var(--deep);color:var(--white)}
+.time-slot.booked{background:var(--warm);border-color:var(--blush);color:var(--muted);cursor:not-allowed;font-size:11px}
+ 
+.btn-primary{width:100%;padding:16px;min-height:52px;background:var(--deep);color:var(--white);border:none;border-radius:14px;font-family:'Jost',sans-serif;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.04em;transition:background .2s,transform .15s;box-shadow:var(--shadow-sm);touch-action:manipulation}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{background:var(--muted);cursor:not-allowed;transform:none}
+.btn-secondary{width:100%;padding:14px;min-height:48px;background:transparent;color:var(--deep);border:1.5px solid var(--blush);border-radius:14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:.04em;transition:all .2s;margin-top:10px;touch-action:manipulation}
+.btn-secondary:hover{background:var(--warm);border-color:var(--rose)}
+.btn-danger{width:100%;padding:14px;min-height:48px;background:var(--red);color:var(--white);border:none;border-radius:14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.04em;transition:all .2s;touch-action:manipulation}
+.btn-danger:hover{background:#9B2323}
+ 
+.confirm-card{background:var(--white);border-radius:20px;padding:24px;box-shadow:var(--shadow-md);margin-bottom:20px;border:1px solid var(--blush);position:relative;overflow:hidden}
+.confirm-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold))}
+.confirm-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--deep),var(--rose));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 16px}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:26px;text-align:center;color:var(--deep);margin-bottom:4px}
+.confirm-subtitle{text-align:center;font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:300}
+.confirm-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--warm);align-items:flex-start}
+.confirm-row:last-child{border-bottom:none}
+.confirm-icon-sm{font-size:16px;min-width:24px;text-align:center;margin-top:1px}
+.confirm-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:2px}
+.confirm-val{font-size:14px;font-weight:500;color:var(--ink);line-height:1.4}
+ 
+/* LOADING SPINNER */
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+ 
+/* ADMIN */
+.date-nav{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:14px;padding:14px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm);border:1px solid var(--blush)}
+.date-nav button{background:none;border:none;font-size:24px;cursor:pointer;color:var(--deep);padding:8px 16px;min-height:44px;min-width:44px;border-radius:8px;transition:background .15s;touch-action:manipulation}
+.date-nav button:hover{background:var(--warm)}
+.date-label{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--deep);text-align:center}
+.date-label small{display:block;font-family:'Jost',sans-serif;font-size:11px;color:var(--muted);font-weight:300;margin-top:2px}
+.appt-list{display:flex;flex-direction:column;gap:12px}
+.appt-card{background:var(--white);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm);border:1px solid var(--blush);display:flex;gap:14px;align-items:flex-start;position:relative;overflow:hidden}
+.appt-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--rose);border-radius:4px 0 0 4px}
+.travel-card{background:var(--warm);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;border:1px dashed var(--blush)}
+.appt-time-block{min-width:52px;text-align:center;padding-left:6px}
+.appt-time{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--deep);line-height:1}
+.appt-time-end{font-size:10px;color:var(--muted);font-weight:300;margin-top:2px}
+.appt-body{flex:1;min-width:0}
+.appt-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.appt-svc{font-size:12px;color:var(--rose);font-weight:500;margin-bottom:5px;line-height:1.5}
+.appt-detail{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;word-break:break-word}
+.appt-delete{background:none;border:none;font-size:16px;cursor:pointer;color:var(--muted);padding:4px;border-radius:8px;transition:all .15s;line-height:1;flex-shrink:0;touch-action:manipulation}
+.appt-delete:hover{background:#FEE;color:var(--red)}
+.empty-state{text-align:center;padding:48px 24px;color:var(--muted)}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
+.stat-card{background:var(--white);border-radius:14px;padding:14px 10px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--blush)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--deep);line-height:1}
+.stat-label{font-size:10px;color:var(--muted);font-weight:300;margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+ 
+/* PIN */
+.pin-wrap{background:var(--white);border-radius:20px;padding:32px 24px;box-shadow:var(--shadow-md);border:1px solid var(--blush);text-align:center}
+.pin-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--deep);margin-bottom:6px}
+.pin-sub{font-size:12px;color:var(--muted);margin-bottom:20px}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--warm);border:2px solid var(--blush);transition:all .2s}
+.pin-dot.filled{background:var(--deep);border-color:var(--deep)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:240px;margin:0 auto}
+.pin-key{padding:16px;min-height:56px;border-radius:12px;border:1.5px solid var(--blush);background:var(--white);font-family:'Jost',sans-serif;font-size:18px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s;touch-action:manipulation}
+.pin-key:active{transform:scale(.92);background:var(--warm)}
+.pin-error{font-size:12px;color:var(--red);margin-top:12px;min-height:16px}
+ 
+.cal-btn{display:flex;align-items:center;gap:10px;width:100%;padding:14px 18px;background:var(--white);border:1.5px solid var(--blush);border-radius:14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;color:var(--deep);cursor:pointer;text-align:left;transition:all .2s;margin-top:10px;text-decoration:none}
+.cal-btn:hover{background:var(--warm);border-color:var(--rose)}
+.cal-icon{font-size:18px}
+.cal-text{flex:1}
+.cal-text small{display:block;font-size:11px;color:var(--muted);font-weight:300;margin-top:1px}
+.addon-note{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:16px;padding:10px 12px;background:var(--warm);border-radius:10px;line-height:1.5}
+.cancel-booking-card{background:var(--white);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm);border:1px solid var(--blush);margin-bottom:12px;position:relative;overflow:hidden}
+.cancel-side{position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--white);padding:12px 20px;border-radius:30px;font-size:13px;font-weight:500;box-shadow:var(--shadow-md);transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:999;white-space:nowrap;max-width:90%;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+ 
+/* SETUP BANNER */
+.setup-banner{background:#FFF8E7;border:1.5px solid var(--gold);border-radius:14px;padding:16px;margin-bottom:20px;font-size:12px;line-height:1.6;color:var(--ink)}
+.setup-banner strong{color:var(--gold);display:block;margin-bottom:4px;font-size:13px}
+</style>
+</head>
+<body>
+ 
+<div class="hero">
+  <div class="hero-brand">Tips &amp; Toes<em>Mobile Nail Studio</em></div>
+  <p class="hero-sub">&#10022; We come to you &middot; Lani: +27 72 997 6927 &middot; Joy: +27 76 531 5424</p>
+</div>
+ 
+<div class="nav-wrap">
+  <div class="nav">
+    <button id="nav-book" class="active" onclick="showView('book',this)">Book Now</button>
+    <button id="nav-cancel" class="cancel-btn" onclick="showView('cancel',this)">Cancel</button>
+    <button id="nav-pay" class="pay-btn" onclick="showView('pay',this)">Pay</button>
+    <button id="nav-admin" class="gold-btn" onclick="showView('admin',this)">Diary &#10022;</button>
+  </div>
+</div>
+ 
+<!-- BOOKING VIEW -->
+<div id="view-book" class="view active">
+  <div class="steps">
+    <div class="step-dot active" id="sd1">1</div><div class="step-line" id="sl1"></div>
+    <div class="step-dot" id="sd2">2</div><div class="step-line" id="sl2"></div>
+    <div class="step-dot" id="sd3">3</div><div class="step-line" id="sl3"></div>
+    <div class="step-dot" id="sd4">4</div>
+  </div>
+ 
+  <div class="form-step active" id="step1">
+    <div class="sec-title">Choose your services</div>
+    <p class="sec-sub">Tap to select one or more &#10022;</p>
+    <div class="selection-bar" id="selection-bar">
+      <div class="selection-bar-title">Your selection</div>
+      <div class="selection-tags" id="selection-tags"></div>
+      <div class="selection-totals">
+        <div class="sel-total">Total: <strong id="sel-total-price">R0</strong></div>
+        <div class="sel-total">Duration: <strong id="sel-total-dur">0 min</strong></div>
+      </div>
+      <div class="dur-note" id="dur-note"></div>
+    </div>
+    <div id="service-grid"></div>
+    <div class="simul-card" id="simul-card">
+      <div class="simul-header">
+        <div class="simul-title">&#128133; You've selected a Mani + Pedi</div>
+        <div class="simul-sub">How would you like them done?</div>
+      </div>
+      <div class="simul-options">
+        <button class="simul-btn active" id="simul-seq" onclick="setSimul(false)">&#128587; One after the other<br><span style="font-size:10px;font-weight:300;display:block;margin-top:3px">180 min &middot; just Lani</span></button>
+        <button class="simul-btn" id="simul-sim" onclick="setSimul(true)">&#128111; At the same time<br><span style="font-size:10px;font-weight:300;display:block;margin-top:3px">90 min &middot; 2 technicians</span></button>
+      </div>
+    </div>
+    <div class="addon-note">&#128133; Add-ons: Soak Offs R50 &middot; Chrome R50 &middot; Nail Art R20 &mdash; add in your notes</div>
+    <button class="btn-primary" onclick="goStep(2)">Next &mdash; Pick Date &amp; Time &rarr;</button>
+  </div>
+ 
+  <div class="form-step" id="step2">
+    <div class="sec-title">Date &amp; Time</div>
+    <p class="sec-sub" id="step2-sub">Choose when works best for you &middot; We are closed on Mondays</p>
+    <div class="form-group"><label>Select date</label><input type="date" id="appt-date" onchange="loadSlots()"></div>
+    <label>Available time slots</label>
+    <div class="time-grid" id="time-grid">
+      <div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">Pick a date above to see available times</div>
+    </div>
+    <button class="btn-primary" onclick="goStep(3)">Next &mdash; Your Details &rarr;</button>
+    <button class="btn-secondary" onclick="goStep(1)">&larr; Back</button>
+  </div>
+ 
+  <div class="form-step" id="step3">
+    <div class="sec-title">Your Details</div>
+    <p class="sec-sub">So Lani knows where to find you &#10022;</p>
+    <div class="row-2">
+      <div class="form-group"><label>First name</label><input type="text" id="c-first" placeholder="Maya" autocomplete="given-name" autocapitalize="words"></div>
+      <div class="form-group"><label>Last name</label><input type="text" id="c-last" placeholder="Smith" autocomplete="family-name" autocapitalize="words"></div>
+    </div>
+    <div class="form-group"><label>Phone number</label><input type="tel" id="c-phone" placeholder="+27 82 000 0000" autocomplete="tel" inputmode="tel"></div>
+    <div class="form-group"><label>Email address</label><input type="email" id="c-email" placeholder="maya@email.com" autocomplete="email" inputmode="email" autocapitalize="none"></div>
+    <div class="form-group"><label>&#128205; Full street address</label><input type="text" id="c-address" placeholder="123 Maple Street" autocomplete="street-address" autocapitalize="words"></div>
+    <div class="form-group"><label>Suburb / Area</label><input type="text" id="c-suburb" placeholder="Sandton, Johannesburg" autocapitalize="words"></div>
+    <div class="form-group">
+      <label>Location type</label>
+      <select id="c-loctype">
+        <option value="">Select type...</option>
+        <option value="Home">&#127968; Home</option>
+        <option value="Work / Office">&#127970; Work / Office</option>
+        <option value="Hotel">&#127976; Hotel</option>
+        <option value="Other">&#128204; Other</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Add-ons &amp; special requests (optional)</label><textarea id="c-notes" placeholder="e.g. Chrome add-on R50, Soak Offs, gate code 1234, allergies..." autocorrect="off"></textarea></div>
+    <button class="btn-primary" onclick="goStep(4)">Review &amp; Confirm &rarr;</button>
+    <button class="btn-secondary" onclick="goStep(2)">&larr; Back</button>
+  </div>
+ 
+  <div class="form-step" id="step4">
+    <div class="sec-title">Confirm Booking</div>
+    <p class="sec-sub">Double-check everything looks right &#10022;</p>
+    <div class="confirm-card"><div id="booking-summary"></div></div>
+    <button class="btn-primary" id="confirm-btn" onclick="confirmBooking()">&#10003; Confirm My Appointment</button>
+    <button class="btn-secondary" onclick="goStep(3)">&larr; Edit Details</button>
+  </div>
+ 
+  <div class="form-step" id="step5">
+    <div class="confirm-card">
+      <div class="confirm-icon">&#128133;</div>
+      <div class="confirm-title">You're booked!</div>
+      <div class="confirm-subtitle">Lani will come to you &#10022; See you soon!</div>
+      <div id="success-summary"></div>
+    </div>
+    <div style="background:var(--warm);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;text-align:center">
+      &#128211;️ Need to cancel? Tap <strong style="color:var(--deep)">Cancel</strong> at the top and enter your mobile number. Please give at least 24 hours notice.
+    </div>
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px;font-weight:300">Add this to your calendar:</p>
+    <a class="cal-btn" id="cal-google" href="#" target="_blank" rel="noopener">
+      <span class="cal-icon">&#128197;</span>
+      <span class="cal-text">Add to Google Calendar<small>Opens Google Calendar in your browser</small></span><span>&rarr;</span>
+    </a>
+    <a class="cal-btn" id="cal-ics" href="#" download="tips-and-toes.ics">
+      <span class="cal-icon">&#127822;</span>
+      <span class="cal-text">Add to Apple / Outlook Calendar<small>Downloads .ics file</small></span><span>↓</span>
+    </a>
+    <button class="btn-secondary" onclick="resetBooking()">Book another appointment</button>
+  </div>
+</div>
+ 
+<!-- CANCEL VIEW -->
+<div id="view-cancel" class="view">
+  <div class="sec-title">Cancel a Booking</div>
+  <p class="sec-sub">Enter the mobile number you used when booking. Cancellations must be made at least 24 hours before your appointment.</p>
+  <div class="form-group"><label>Your mobile number</label><input type="tel" id="cancel-phone-input" placeholder="+27 82 000 0000" inputmode="tel" autocomplete="tel"></div>
+  <button class="btn-primary" onclick="lookupPhone()">Find My Booking &rarr;</button>
+  <div id="cancel-bookings-list" style="margin-top:20px"></div>
+  <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;font-weight:300;line-height:1.6">Need help? Call Lani <a href="tel:+27729976927" style="color:var(--rose)">+27 72 997 6927</a> or Joy <a href="tel:+27765315424" style="color:var(--rose)">+27 76 531 5424</a></p>
+</div>
+ 
+<!-- PAY VIEW -->
+<div id="view-pay" class="view">
+  <div class="sec-title">Payment Details</div>
+  <p class="sec-sub">Please make your payment via EFT after your appointment &#10022;</p>
+ 
+  <div style="background:var(--deepdark);border-radius:20px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:var(--shadow-md)">
+    <div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:radial-gradient(circle,rgba(212,134,154,.2) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--rose);font-weight:600;margin-bottom:16px">Bank Details</div>
+ 
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px">Bank</div>
+        <div style="font-size:16px;font-weight:600;color:var(--white)">Capitec Bank</div>
+      </div>
+      <div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px">Account Name</div>
+        <div style="font-size:16px;font-weight:600;color:var(--white)">MS MJ Moroane</div>
+      </div>
+      <div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px">Account Number</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--blush);letter-spacing:3px">1594888696</div>
+          <button onclick="copyAccount()" style="background:rgba(255,255,255,.1);border:1px solid rgba(244,206,206,.3);border-radius:8px;padding:6px 12px;color:var(--blush);font-family:'Jost',sans-serif;font-size:11px;cursor:pointer;touch-action:manipulation" id="copy-btn">Copy</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px">Account Type</div>
+        <div style="font-size:16px;font-weight:600;color:var(--white)">Savings</div>
+      </div>
+      <div style="background:rgba(212,134,154,.15);border-radius:12px;padding:12px 14px;border:1px solid rgba(212,134,154,.25)">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:4px;font-weight:600">Reference</div>
+        <div style="font-size:14px;color:var(--white);font-weight:500">Please use your <strong style="color:var(--blush)">full name</strong> as your payment reference</div>
+      </div>
+    </div>
+  </div>
+ 
+  <div style="background:var(--warm);border-radius:14px;padding:16px;border:1px solid var(--blush);font-size:12px;color:var(--muted);line-height:1.7;text-align:center">
+    &#128133; Thank you for choosing Tips &amp; Toes<br>
+    Please send proof of payment to<br>
+    <a href="tel:+27729976927" style="color:var(--rose);font-weight:500">Lani: +27 72 997 6927</a> &nbsp;&middot;&nbsp;
+    <a href="tel:+27765315424" style="color:var(--rose);font-weight:500">Joy: +27 76 531 5424</a>
+  </div>
+</div>
+ 
+<!-- ADMIN VIEW -->
+<div id="view-admin" class="view">
+  <div id="admin-pin">
+    <div class="pin-wrap">
+      <div style="font-size:36px;margin-bottom:10px">&#128133;</div>
+      <div class="pin-title">Lani's Diary</div>
+      <p class="pin-sub">Enter your 4-digit PIN</p>
+      <div class="pin-dots">
+        <div class="pin-dot" id="pd1"></div><div class="pin-dot" id="pd2"></div>
+        <div class="pin-dot" id="pd3"></div><div class="pin-dot" id="pd4"></div>
+      </div>
+      <div class="pin-pad">
+        <button class="pin-key" onclick="pinPress('1')">1</button><button class="pin-key" onclick="pinPress('2')">2</button><button class="pin-key" onclick="pinPress('3')">3</button>
+        <button class="pin-key" onclick="pinPress('4')">4</button><button class="pin-key" onclick="pinPress('5')">5</button><button class="pin-key" onclick="pinPress('6')">6</button>
+        <button class="pin-key" onclick="pinPress('7')">7</button><button class="pin-key" onclick="pinPress('8')">8</button><button class="pin-key" onclick="pinPress('9')">9</button>
+        <button class="pin-key" style="visibility:hidden"></button><button class="pin-key" onclick="pinPress('0')">0</button><button class="pin-key" onclick="pinDel()" style="font-size:14px;color:var(--muted)">&#9003;</button>
+      </div>
+      <div class="pin-error" id="pin-error"></div>
+      <p style="font-size:11px;color:var(--muted);margin-top:16px;font-weight:300">PIN: <strong>1234</strong></p>
+    </div>
+  </div>
+  <div id="admin-dash" style="display:none">
+    <div id="setup-notice" class="setup-banner" style="display:none">
+      <strong>⚙️ One-time setup needed</strong>
+      The Google Sheet connection is not yet configured. Follow the setup instructions to connect your bookings to Google Sheets.
+    </div>
+    <div class="date-nav">
+      <button onclick="adminShift(-1)">&#8249;</button>
+      <div class="date-label" id="admin-date-label">Today<small id="admin-date-sub"></small></div>
+      <button onclick="adminShift(1)">&#8250;</button>
+    </div>
+    <div class="stats-row" id="stats-row"></div>
+    <div class="appt-list" id="admin-list"></div>
+    <button class="btn-secondary" style="margin-top:20px" onclick="lockAdmin()">&#128274; Lock Diary</button>
+  </div>
+</div>
+ 
+<div class="toast" id="toast"></div>
+ 
+<script>
+// ============================================================
+// ⚙️  CONFIGURATION &mdash; paste your Apps Script URL here after setup
+// ============================================================
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytc-P_HoIVKrBB73fTWha6Ycwk2gbSCITdS7OYuIFL3sk8Y0tYE-Y3S7VSpxaVPtKz/exec';
+ 
+// ============================================================
+// CONSTANTS
+// ============================================================
+const TRAVEL_BUFFER = 30;
+const CANCEL_HOURS  = 24;
+const PIN           = '1234';
+const SPREADSHEET_ID = '1jc0cANBDSeNzB8tEv_dQCHoukmO24qwlSi_AGTA_jAg';
+ 
+const MANI_IDS = ['gel-mani','basic-mani'];
+const PEDI_IDS = ['gel-pedi','basic-pedi'];
+const BUFF_ID  = 'buff-shine';
+ 
+const CATEGORIES = [
+  {label:'Acrylics',services:[
+    {id:'acrylic-tips-gel', name:'Acrylic Tips + Gel',    price:500},
+    {id:'acrylic-ombre',    name:'Acrylic Ombr&eacute;',          price:500},
+    {id:'acrylic-fill',     name:'Acrylic Fill',            price:350},
+  ]},
+  {label:'Poly Gel',services:[
+    {id:'poly-overlay',       name:'Poly Overlay',       price:500},
+    {id:'poly-fill',          name:'Poly Fill',           price:450},
+    {id:'poly-tips',          name:'Poly Tips',           price:540},
+  ]},
+  {label:'Gel',services:[
+    {id:'overlay-gel',         name:'Overlay Gel',         price:300},
+    {id:'builder-gel-overlay', name:'Builder Gel Overlay', price:300},
+    {id:'builder-gel-fill',    name:'Builder Gel Fill',    price:290},
+  ]},
+  {label:'Pedicure & Manicure',services:[
+    {id:'gel-pedi',   name:'Gel Pedicure',   price:500},
+    {id:'gel-mani',   name:'Gel Manicure',   price:400},
+    {id:'basic-pedi', name:'Basic Pedicure', price:300},
+    {id:'basic-mani', name:'Basic Manicure', price:280},
+    {id:'buff-shine', name:'Buff & Shine',   price:100},
+  ]},
+];
+ 
+const ALL_SERVICES = CATEGORIES.flatMap(c=>c.services);
+const SLOTS = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30',
+               '12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+ 
+// ============================================================
+// STATE &mdash; bookings stored BOTH in Google Sheets AND locally
+// Local is used as a fast cache; Sheets is the source of truth
+// ============================================================
+let bookings     = JSON.parse(localStorage.getItem('tt_bk')||'[]');
+let selectedIds  = [];
+let selDate      = '';
+let selTime      = '';
+let simultaneous = false;
+let pinBuf       = '';
+let adminDelta   = 0;
+ 
+// ============================================================
+// GOOGLE SHEETS API &mdash; via Apps Script Web App
+// ============================================================
+async function sheetsRequest(action, data){
+  if(!SCRIPT_URL){
+    // No script URL yet &mdash; use localStorage only
+    return { ok: false, offline: true };
+  }
+  try {
+    const url = SCRIPT_URL + '?action=' + action + (data ? '&data=' + encodeURIComponent(JSON.stringify(data)) : '');
+    const res = await fetch(url);
+    const json = await res.json();
+    return json;
+  } catch(e) {
+    console.error('Sheets error:', e);
+    return { ok: false, error: e.message };
+  }
+}
+ 
+async function fetchBookings(){
+  const result = await sheetsRequest('getBookings');
+  if(result.ok && result.bookings){
+    bookings = result.bookings;
+    localStorage.setItem('tt_bk', JSON.stringify(bookings));
+  } else {
+    // Fall back to local
+    bookings = JSON.parse(localStorage.getItem('tt_bk')||'[]');
+  }
+  return bookings;
+}
+ 
+async function saveBookingToSheets(bk){
+  const result = await sheetsRequest('addBooking', bk);
+  // Always save locally too as backup
+  bookings.push(bk);
+  localStorage.setItem('tt_bk', JSON.stringify(bookings));
+  return result;
+}
+ 
+async function cancelBookingInSheets(id){
+  const result = await sheetsRequest('cancelBooking', { id });
+  bookings = bookings.filter(b=>b.id!==id);
+  localStorage.setItem('tt_bk', JSON.stringify(bookings));
+  return result;
+}
+ 
+// ============================================================
+// HELPERS
+// ============================================================
+function save(){ localStorage.setItem('tt_bk', JSON.stringify(bookings)) }
+function getSelected(){ return ALL_SERVICES.filter(s=>selectedIds.includes(s.id)) }
+function totalPrice(){ return getSelected().reduce((s,sv)=>s+sv.price,0) }
+ 
+function hasManiPediCombo(ids){
+  const nb=ids.filter(id=>id!==BUFF_ID);
+  return nb.some(id=>MANI_IDS.includes(id)) && nb.some(id=>PEDI_IDS.includes(id));
+}
+ 
+function calcDuration(ids, simul){
+  if(!ids.length) return 0;
+  if(ids.length===1&&ids[0]===BUFF_ID) return 30;
+  const nb=ids.filter(id=>id!==BUFF_ID);
+  if(!nb.length) return 30;
+  if(nb.length===1) return 90;
+  if(hasManiPediCombo(ids)) return simul ? 90 : 180;
+  return 90;
+}
+ 
+function getDurNote(ids,simul){
+  if(!ids.length) return '';
+  if(ids.length===1&&ids[0]===BUFF_ID) return 'Buff & Shine is a quick 30 min treatment';
+  const nb=ids.filter(id=>id!==BUFF_ID);
+  if(hasManiPediCombo(ids)&&!simul) return '&#128161; Sequential: hands then feet &mdash; 3 hrs total';
+  if(hasManiPediCombo(ids)&&simul)  return '&#128161; Simultaneous: 2 technicians, hands & feet at same time &mdash; 90 min';
+  if(ids.length>1&&ids.includes(BUFF_ID)) return '&#128161; Buff & Shine absorbed into 90 min session';
+  return '';
+}
+ 
+function totalDur(){ return calcDuration(selectedIds, simultaneous) }
+function totalBlock(){ return totalDur() + TRAVEL_BUFFER }
+function toM(t){ const[h,m]=t.split(':').map(Number); return h*60+m }
+function addM(t,m){ const tot=toM(t)+m; return `${String(Math.floor(tot/60)).padStart(2,'0')}:${String(tot%60).padStart(2,'0')}` }
+function fv(id){ return document.getElementById(id).value.trim() }
+ 
+function hasConflict(start, blockDur, bks){
+  const sm=toM(start), em=sm+blockDur;
+  return bks.some(b=>{
+    const bs=toM(b.time);
+    const dur=(typeof b.totalDuration==='number'&&b.totalDuration>0)?b.totalDuration:90;
+    const be=bs+dur+TRAVEL_BUFFER;
+    return sm<be&&em>bs;
+  });
+}
+ 
+function normalisePhone(p){ return p.replace(/[\s\-().+]/g,'').replace(/^0/,'').replace(/^27/,'') }
+ 
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('DOMContentLoaded',()=>{
+  buildServices();
+  const t=new Date(), y=t.getFullYear(), m=String(t.getMonth()+1).padStart(2,'0'), d=String(t.getDate()).padStart(2,'0');
+  const dateInput = document.getElementById('appt-date');
+  dateInput.min=`${y}-${m}-${d}`;
+  // Disable Mondays (day off) &mdash; validate on change
+  dateInput.addEventListener('change', function(){
+    const chosen = new Date(this.value + 'T12:00:00');
+    if(chosen.getDay() === 1){ // 1 = Monday
+      showToast('Sorry, we are closed on Mondays &#127800;');
+      this.value = '';
+      document.getElementById('time-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">Pick a date above to see available times<br><span style="font-size:11px">We are closed on Mondays</span></div>';
+      selDate = ''; selTime = '';
+    }
+  });
+  if(!SCRIPT_URL){
+    document.getElementById('setup-notice') && (document.getElementById('setup-notice').style.display='block');
+  }
+});
+ 
+// ============================================================
+// BUILD SERVICES
+// ============================================================
+function buildServices(){
+  document.getElementById('service-grid').innerHTML = CATEGORIES.map(cat=>`
+    <div class="cat-label">${cat.label}</div>
+    <div class="service-grid">
+      ${cat.services.map(s=>`
+        <div class="service-card" id="sv-${s.id}" onclick="toggleService('${s.id}')">
+          <div class="check" id="chk-${s.id}"></div>
+          <div class="svc-name">${s.name}</div>
+          <div class="svc-meta">R${s.price} &middot; ${s.id===BUFF_ID?'30':'90'} min</div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+ 
+function toggleService(id){
+  if(selectedIds.includes(id)){
+    selectedIds=selectedIds.filter(i=>i!==id);
+    document.getElementById('sv-'+id).classList.remove('selected');
+    document.getElementById('chk-'+id).textContent='';
+  } else {
+    selectedIds.push(id);
+    document.getElementById('sv-'+id).classList.add('selected');
+    document.getElementById('chk-'+id).textContent='&#10003;';
+  }
+  if(!hasManiPediCombo(selectedIds)){ simultaneous=false; resetSimulBtns(); }
+  updateSelectionBar();
+  if(selDate){ selTime=''; loadSlots(); }
+}
+ 
+function resetSimulBtns(){
+  const seq=document.getElementById('simul-seq'), sim=document.getElementById('simul-sim');
+  seq.classList.add('active'); sim.classList.remove('active');
+}
+ 
+function setSimul(val){
+  simultaneous=val;
+  document.getElementById('simul-seq').classList.toggle('active',!val);
+  document.getElementById('simul-sim').classList.toggle('active', val);
+  updateSelectionBar();
+  if(selDate){ selTime=''; loadSlots(); }
+}
+ 
+function updateSelectionBar(){
+  const bar=document.getElementById('selection-bar');
+  const svcs=getSelected();
+  if(!svcs.length){ bar.classList.remove('visible'); document.getElementById('simul-card').classList.remove('visible'); return }
+  bar.classList.add('visible');
+  document.getElementById('selection-tags').innerHTML=svcs.map(s=>`<span class="selection-tag">${s.name}</span>`).join('');
+  document.getElementById('sel-total-price').textContent='R'+totalPrice();
+  document.getElementById('sel-total-dur').textContent=totalDur()+' min';
+  document.getElementById('dur-note').textContent=getDurNote(selectedIds,simultaneous);
+  document.getElementById('step2-sub').textContent=`${totalDur()} min appointment &middot; R${totalPrice()} &mdash; choose your start time`;
+  document.getElementById('simul-card').classList.toggle('visible', hasManiPediCombo(selectedIds));
+}
+ 
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showView(v,btn){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(v==='admin') renderAdmin();
+  if(v==='cancel'){
+    document.getElementById('cancel-phone-input').value='';
+    document.getElementById('cancel-bookings-list').innerHTML='';
+  }
+}
+ 
+function goStep(n){
+  if(n===2&&!selectedIds.length){ showToast('Please select at least one service ✨'); return }
+  if(n===3){
+    if(!selDate){ showToast('Please choose a date'); return }
+    if(!selTime){ showToast('Please choose a time slot'); return }
+  }
+  if(n===4){
+    if(!fv('c-first')||!fv('c-last')){ showToast('Please enter your name'); return }
+    if(!fv('c-phone'))                { showToast('Please enter your phone number'); return }
+    if(!fv('c-email'))                { showToast('Please enter your email address'); return }
+    if(!fv('c-address'))              { showToast('Please enter your address'); return }
+    if(!fv('c-suburb'))               { showToast('Please enter your suburb'); return }
+    renderSummary();
+  }
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  updateDots(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+ 
+function updateDots(n){
+  for(let i=1;i<=4;i++){
+    const dot=document.getElementById('sd'+i),line=document.getElementById('sl'+i);
+    dot.classList.remove('active','done');
+    if(line) line.classList.remove('done');
+    if(i<n){ dot.classList.add('done'); dot.textContent='&#10003;' }
+    if(i===n){ dot.classList.add('active'); dot.textContent=i }
+    if(i>n) dot.textContent=i;
+    if(line&&i<n) line.classList.add('done');
+  }
+}
+ 
+// ============================================================
+// SLOTS &mdash; fetch live bookings from Sheets before rendering
+// ============================================================
+async function loadSlots(){
+  selDate=document.getElementById('appt-date').value;
+  selTime='';
+  if(!selDate) return;
+  // Block Mondays
+  const chosenDay = new Date(selDate + 'T12:00:00').getDay();
+  if(chosenDay === 1){
+    showToast('Sorry, we are closed on Mondays &#127800;');
+    document.getElementById('appt-date').value='';
+    selDate=''; selTime='';
+    document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">We are closed on Mondays &mdash; please pick another day</div>';
+    return;
+  }
+  if(!selectedIds.length){
+    document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0">Please go back and select a service first</div>';
+    return;
+  }
+  document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0"><span class="spinner" style="border-top-color:var(--rose);border-color:var(--blush)"></span> Checking availability...</div>';
+ 
+  // Fetch live from Sheets; fall back to local cache
+  await fetchBookings();
+ 
+  const dur=totalDur(), block=totalBlock();
+  const dayBk=bookings.filter(b=>b.date===selDate);
+ 
+  document.getElementById('time-grid').innerHTML=SLOTS.map(sl=>{
+    const endMins=toM(sl)+dur;
+    const tooLate=endMins>17*60;
+    const taken=!tooLate&&hasConflict(sl,block,dayBk);
+    const unavail=taken||tooLate;
+    return `<button class="time-slot${unavail?' booked':''}" ${unavail?'disabled':''} onclick="pickTime('${sl}',this)">
+      ${sl}${taken?'<br><small style="font-size:9px">Taken</small>':tooLate?'<br><small style="font-size:9px">Too late</small>':''}
+    </button>`;
+  }).join('');
+}
+ 
+function pickTime(t,el){
+  selTime=t;
+  document.querySelectorAll('.time-slot').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+}
+ 
+// ============================================================
+// SUMMARY
+// ============================================================
+function renderSummary(){
+  const svcs=getSelected(), dur=totalDur(), end=addM(selTime,dur);
+  const ds=new Date(selDate+'T'+selTime).toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const note=getDurNote(selectedIds,simultaneous);
+  document.getElementById('booking-summary').innerHTML=`
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128133;</span><div>
+      <div class="confirm-label">Services (${svcs.length})</div>
+      <div class="confirm-val">${svcs.map(s=>`${s.name} &mdash; R${s.price}`).join('<br>')}
+      <span style="color:var(--gold);font-weight:600;font-size:13px;margin-top:4px;display:block">Total: R${totalPrice()} &middot; ${dur} min</span>
+      ${note?`<span style="color:var(--muted);font-size:11px;font-style:italic;display:block;margin-top:2px">${note}</span>`:''}
+      </div></div></div>
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128197;</span><div><div class="confirm-label">Date &amp; Time</div><div class="confirm-val">${ds}<br>${selTime} – ${end}</div></div></div>
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128205;</span><div><div class="confirm-label">Location</div><div class="confirm-val">${fv('c-address')}<br><span style="color:var(--muted);font-size:12px">${fv('c-suburb')}${fv('c-loctype')?' &middot; '+fv('c-loctype'):''}</span></div></div></div>
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128100;</span><div><div class="confirm-label">Client</div><div class="confirm-val">${fv('c-first')} ${fv('c-last')}<br><span style="color:var(--muted);font-size:12px">${fv('c-phone')} &middot; ${fv('c-email')}</span></div></div></div>
+    ${fv('c-notes')?`<div class="confirm-row"><span class="confirm-icon-sm">&#128172;</span><div><div class="confirm-label">Notes</div><div class="confirm-val" style="font-weight:300;font-size:13px">${fv('c-notes')}</div></div></div>`:''}
+  `;
+}
+ 
+// ============================================================
+// CONFIRM BOOKING &mdash; saves to Google Sheets
+// ============================================================
+async function confirmBooking(){
+  const btn=document.getElementById('confirm-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span> Saving your booking...';
+ 
+  // Final live conflict check
+  await fetchBookings();
+  const dur=totalDur(), block=totalBlock();
+  const dayBk=bookings.filter(b=>b.date===selDate);
+  if(hasConflict(selTime,block,dayBk)){
+    showToast('⚠️ That slot was just taken! Please pick another.');
+    btn.disabled=false; btn.innerHTML='&#10003; Confirm My Appointment';
+    goStep(2); return;
+  }
+ 
+  const svcs=getSelected();
+  const end=addM(selTime,dur), travelEnd=addM(selTime,block);
+  const bk={
+    id:       Date.now().toString(),
+    date:     selDate,
+    time:     selTime,
+    endTime:  end,
+    travelEnd,
+    totalDuration: dur,
+    simultaneous,
+    services:    svcs.map(s=>({name:s.name,price:s.price})),
+    servicesStr: svcs.map(s=>s.name).join(', '),
+    totalPrice:  totalPrice(),
+    firstName:   fv('c-first'),
+    lastName:    fv('c-last'),
+    phone:       fv('c-phone'),
+    email:       fv('c-email'),
+    address:     fv('c-address'),
+    suburb:      fv('c-suburb'),
+    locationType:fv('c-loctype'),
+    notes:       fv('c-notes'),
+  };
+ 
+  await saveBookingToSheets(bk);
+ 
+  btn.disabled=false;
+  btn.innerHTML='&#10003; Confirm My Appointment';
+ 
+  const ds=new Date(bk.date+'T'+bk.time).toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const simulNote=bk.simultaneous?'<br><span style="font-size:11px;color:var(--muted);font-style:italic">Simultaneous &mdash; 2 technicians</span>':'';
+  document.getElementById('success-summary').innerHTML=`
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128133;</span><div><div class="confirm-label">Services</div><div class="confirm-val">${bk.servicesStr}${simulNote}<br><span style="color:var(--gold);font-weight:600;font-size:13px">R${bk.totalPrice} &middot; ${bk.totalDuration} min</span></div></div></div>
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128197;</span><div><div class="confirm-label">Date &amp; Time</div><div class="confirm-val">${ds}<br>${bk.time} – ${bk.endTime}</div></div></div>
+    <div class="confirm-row"><span class="confirm-icon-sm">&#128205;</span><div><div class="confirm-label">Location</div><div class="confirm-val">${bk.address}, ${bk.suburb}</div></div></div>
+  `;
+  genCalLinks(bk);
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step5').classList.add('active');
+  updateDots(5);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+ 
+// ============================================================
+// CALENDAR LINKS
+// ============================================================
+function genCalLinks(b){
+  const gs=b.date.replace(/-/g,'')+'T'+b.time.replace(':','')+'00';
+  const ge=b.date.replace(/-/g,'')+'T'+b.endTime.replace(':','')+'00';
+  const simulStr=b.simultaneous?' (simultaneous &mdash; 2 technicians)':'';
+  document.getElementById('cal-google').href='https://calendar.google.com/calendar/render?action=TEMPLATE'
+    +`&text=${encodeURIComponent('Tips & Toes – '+b.servicesStr)}`
+    +`&dates=${gs}/${ge}`
+    +`&details=${encodeURIComponent('Nail appointment with Lani.\nServices: '+b.servicesStr+simulStr+'\nTotal: R'+b.totalPrice+'\nLani: +27 72 997 6927\n\nTo cancel: return to the booking site, tap Cancel and enter your mobile number. 24hrs notice required.'+(b.notes?'\n\nNotes: '+b.notes:''))}`
+    +`&location=${encodeURIComponent(b.address+', '+b.suburb)}`;
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Tips & Toes//EN','BEGIN:VEVENT',
+    `DTSTART:${gs}`,`DTEND:${ge}`,
+    `SUMMARY:Tips & Toes – ${b.servicesStr}`,
+    `DESCRIPTION:Services: ${b.servicesStr}${simulStr}\\nTotal: R${b.totalPrice}\\nClient: ${b.firstName} ${b.lastName}\\nPhone: ${b.phone}\\nLani: +27 72 997 6927\\n\\nTo cancel: return to booking site and tap Cancel. 24hrs notice required.${b.notes?'\\n\\nNotes: '+b.notes:''}`,
+    `LOCATION:${b.address}, ${b.suburb}`,'STATUS:CONFIRMED',`UID:${b.id}@tipsandtoes`,
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('cal-ics').href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+}
+ 
+function resetBooking(){
+  selectedIds=[]; selDate=''; selTime=''; simultaneous=false;
+  ['c-first','c-last','c-phone','c-email','c-address','c-suburb','c-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('c-loctype').value='';
+  document.getElementById('appt-date').value='';
+  document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:16px 0;font-weight:300">Pick a date above to see available times<br><span style="font-size:11px">We are closed on Mondays</span></div>';
+  document.getElementById('selection-bar').classList.remove('visible');
+  document.getElementById('simul-card').classList.remove('visible');
+  resetSimulBtns();
+  buildServices();
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step1').classList.add('active');
+  updateDots(1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+ 
+// ============================================================
+// CANCELLATION
+// ============================================================
+async function lookupPhone(){
+  const input=document.getElementById('cancel-phone-input').value.trim();
+  const list=document.getElementById('cancel-bookings-list');
+  if(!input){ showToast('Please enter your mobile number'); return }
+  list.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted)"><span class="spinner" style="border-top-color:var(--rose);border-color:var(--blush)"></span> Looking up your booking...</div>';
+ 
+  await fetchBookings();
+  const norm=normalisePhone(input);
+  const now=new Date();
+  const matches=bookings.filter(b=>normalisePhone(b.phone||'')===norm);
+ 
+  if(!matches.length){
+    list.innerHTML=`<div style="background:#FEF0F0;border:1.5px solid var(--red);border-radius:14px;padding:16px">
+      <div style="font-size:14px;font-weight:600;color:var(--red);margin-bottom:6px">No bookings found</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">We couldn't find a booking for that number. Please check and try again, or call Lani on <a href="tel:+27729976927" style="color:var(--rose)">+27 72 997 6927</a>.</div>
+    </div>`;
+    return;
+  }
+ 
+  matches.sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));
+  list.innerHTML=matches.map(bk=>{
+    const apptDT=new Date(bk.date+'T'+bk.time);
+    const hoursUntil=(apptDT-now)/(1000*60*60);
+    const ds=apptDT.toLocaleDateString('en-ZA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const isPast=hoursUntil<0;
+    const tooLate=hoursUntil>=0&&hoursUntil<CANCEL_HOURS;
+    const barColor=isPast?'var(--muted)':tooLate?'var(--red)':'var(--rose)';
+ 
+    let footer='';
+    if(isPast){
+      footer=`<div style="font-size:11px;color:var(--muted);font-style:italic;margin-top:10px">This appointment has already passed.</div>`;
+    } else if(tooLate){
+      footer=`<div style="font-size:11px;color:var(--red);margin-top:10px;line-height:1.5;padding:10px;background:#FEF0F0;border-radius:10px">⚠️ Less than 24 hours &mdash; please call Lani directly on <a href="tel:+27729976927" style="color:var(--red);font-weight:600">+27 72 997 6927</a>.</div>`;
+    } else {
+      footer=`
+        <div id="ca-${bk.id}">
+          <button class="btn-danger" style="margin-top:12px;padding:12px;font-size:13px" onclick="showCancelConfirm('${bk.id}')">Cancel This Appointment</button>
+        </div>
+        <div id="cc-${bk.id}" style="display:none;margin-top:12px;background:#FEF0F0;border:1.5px solid var(--red);border-radius:12px;padding:14px">
+          <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:6px">Are you sure?</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5">You are about to cancel your <strong style="color:var(--ink)">${bk.servicesStr}</strong> on <strong style="color:var(--ink)">${ds} at ${bk.time}</strong>. This cannot be undone.</div>
+          <button class="btn-danger" style="padding:12px;font-size:13px" onclick="executeCancel('${bk.id}')">&#10003; Yes, Cancel My Appointment</button>
+          <button class="btn-secondary" style="margin-top:8px;padding:12px;font-size:13px" onclick="hideCancelConfirm('${bk.id}')">&larr; Keep My Appointment</button>
+        </div>`;
+    }
+ 
+    return `<div class="cancel-booking-card">
+      <div class="cancel-side" style="background:${barColor}"></div>
+      <div style="padding-left:8px">
+        <div style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px">${bk.firstName} ${bk.lastName}</div>
+        <div style="font-size:12px;color:var(--rose);font-weight:500;margin-bottom:6px">${bk.servicesStr}${bk.simultaneous?' &middot; 2 technicians':''}</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:300;line-height:1.6">
+          &#128197; ${ds} at ${bk.time} – ${bk.endTime}<br>&#128176; R${bk.totalPrice}<br>&#128205; ${bk.address}, ${bk.suburb}
+        </div>
+        ${footer}
+      </div>
+    </div>`;
+  }).join('');
+}
+ 
+function showCancelConfirm(id){ document.getElementById('ca-'+id).style.display='none'; document.getElementById('cc-'+id).style.display='block' }
+function hideCancelConfirm(id){ document.getElementById('cc-'+id).style.display='none'; document.getElementById('ca-'+id).style.display='block' }
+ 
+async function executeCancel(id){
+  await cancelBookingInSheets(id);
+  lookupPhone();
+  showToast('Appointment cancelled &#127800;');
+}
+ 
+// ============================================================
+// PIN
+// ============================================================
+function pinPress(d){
+  if(pinBuf.length>=4) return;
+  pinBuf+=d; updatePinUI();
+  if(pinBuf.length===4){
+    setTimeout(()=>{
+      if(pinBuf===PIN){
+        document.getElementById('admin-pin').style.display='none';
+        document.getElementById('admin-dash').style.display='block';
+        renderAdmin();
+      } else {
+        document.getElementById('pin-error').textContent='Incorrect PIN. Try again.';
+        pinBuf=''; updatePinUI();
+      }
+    },200);
+  }
+}
+function pinDel(){ pinBuf=pinBuf.slice(0,-1); updatePinUI(); document.getElementById('pin-error').textContent='' }
+function updatePinUI(){ for(let i=1;i<=4;i++) document.getElementById('pd'+i).classList.toggle('filled',i<=pinBuf.length) }
+function lockAdmin(){
+  pinBuf=''; updatePinUI();
+  document.getElementById('pin-error').textContent='';
+  document.getElementById('admin-pin').style.display='block';
+  document.getElementById('admin-dash').style.display='none';
+}
+ 
+// ============================================================
+// ADMIN DIARY &mdash; always fetches live from Sheets
+// ============================================================
+function adminShift(d){ adminDelta+=d; renderAdmin() }
+ 
+async function renderAdmin(){
+  const list=document.getElementById('admin-list');
+  list.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted)"><span class="spinner" style="border-top-color:var(--rose);border-color:var(--blush)"></span> Loading diary...</div>';
+ 
+  await fetchBookings();
+ 
+  const base=new Date(); base.setDate(base.getDate()+adminDelta);
+  const yyyy=base.getFullYear(), mm=String(base.getMonth()+1).padStart(2,'0'), dd=String(base.getDate()).padStart(2,'0');
+  const key=`${yyyy}-${mm}-${dd}`;
+  const label=adminDelta===0?'Today':adminDelta===1?'Tomorrow':adminDelta===-1?'Yesterday':base.toLocaleDateString('en-ZA',{weekday:'long'});
+  const sub=base.toLocaleDateString('en-ZA',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('admin-date-label').childNodes[0].nodeValue=label;
+  document.getElementById('admin-date-sub').textContent=sub;
+ 
+  const dayBk=bookings.filter(b=>b.date===key).sort((a,b)=>a.time.localeCompare(b.time));
+  const rev=dayBk.reduce((s,b)=>s+(Number(b.totalPrice)||0),0);
+ 
+  document.getElementById('stats-row').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${dayBk.length}</div><div class="stat-label">${label}</div></div>
+    <div class="stat-card"><div class="stat-num">R${rev}</div><div class="stat-label">Revenue</div></div>
+    <div class="stat-card"><div class="stat-num">${bookings.length}</div><div class="stat-label">All Time</div></div>
+  `;
+ 
+  if(!dayBk.length){
+    list.innerHTML=`<div class="empty-state"><div style="font-size:40px;margin-bottom:12px">&#127800;</div><div style="font-size:14px;font-weight:300;line-height:1.6">No appointments ${adminDelta===0?'today':'on this day'}.<br>Enjoy the break!</div></div>`;
+    return;
+  }
+ 
+  let html='';
+  dayBk.forEach((b,i)=>{
+    const simulBadge=b.simultaneous?`<span style="background:var(--gold);color:var(--white);font-size:9px;font-weight:600;padding:2px 7px;border-radius:10px;margin-left:6px">2 TECHS</span>`:'';
+    html+=`<div class="appt-card">
+      <div class="appt-time-block"><div class="appt-time">${b.time}</div><div class="appt-time-end">&rarr; ${b.endTime}</div></div>
+      <div class="appt-body">
+        <div class="appt-name">${b.firstName} ${b.lastName}</div>
+        <div class="appt-svc">${b.servicesStr||''}${simulBadge}<br><span style="color:var(--gold);font-weight:600">R${b.totalPrice} &middot; ${b.totalDuration} min</span></div>
+        <div class="appt-detail">&#128205; ${b.address}, ${b.suburb}${b.locationType?' &middot; '+b.locationType:''}</div>
+        <div class="appt-detail">&#128222; <a href="tel:${b.phone}" style="color:inherit;text-decoration:none">${b.phone}</a></div>
+        ${b.email?`<div class="appt-detail">&#9993; ${b.email}</div>`:''}
+        ${b.notes?`<div class="appt-detail" style="margin-top:4px">&#128172; ${b.notes}</div>`:''}
+      </div>
+      <button class="appt-delete" onclick="adminCancel('${b.id}')" title="Cancel">✕</button>
+    </div>`;
+    if(i<dayBk.length-1){
+      const te=b.travelEnd||addM(b.endTime,TRAVEL_BUFFER);
+      html+=`<div class="travel-card"><span style="font-size:16px">&#128663;</span><div style="font-size:11px;color:var(--muted)"><strong style="color:var(--deep)">Travel time</strong> ${b.endTime} – ${te} &middot; ${TRAVEL_BUFFER} min</div></div>`;
+    }
+  });
+  list.innerHTML=html;
+}
+ 
+async function adminCancel(id){
+  if(!confirm('Cancel this appointment?')) return;
+  await cancelBookingInSheets(id);
+  renderAdmin();
+  showToast('Appointment cancelled');
+}
+ 
+function copyAccount(){
+  navigator.clipboard.writeText('1594888696').then(()=>{
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '&#10003; Copied!';
+    btn.style.background = 'rgba(74,124,89,.4)';
+    setTimeout(()=>{ btn.textContent='Copy'; btn.style.background='rgba(255,255,255,.1)'; }, 2000);
+  }).catch(()=>{
+    showToast('Account number: 1594888696');
+  });
+}
+ 
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
+ 
