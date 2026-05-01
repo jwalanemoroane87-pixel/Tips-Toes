@@ -1,3 +1,6 @@
+
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -448,19 +451,29 @@ let adminDelta   = 0;
 // GOOGLE SHEETS API &mdash; via Apps Script Web App
 // ============================================================
 async function sheetsRequest(action, data){
-  if(!SCRIPT_URL){
-    // No script URL yet &mdash; use localStorage only
-    return { ok: false, offline: true };
-  }
-  try {
-    const url = SCRIPT_URL + '?action=' + action + (data ? '&data=' + encodeURIComponent(JSON.stringify(data)) : '');
-    const res = await fetch(url);
-    const json = await res.json();
-    return json;
-  } catch(e) {
-    console.error('Sheets error:', e);
-    return { ok: false, error: e.message };
-  }
+  if(!SCRIPT_URL){ return { ok: false, offline: true }; }
+  return new Promise((resolve) => {
+    const cbName = 'cb_' + Date.now();
+    const url = SCRIPT_URL + '?action=' + action +
+      (data ? '&data=' + encodeURIComponent(JSON.stringify(data)) : '') +
+      '&callback=' + cbName;
+    window[cbName] = function(json){
+      delete window[cbName];
+      const s = document.getElementById('jsonp-s');
+      if(s) s.remove();
+      resolve(json);
+    };
+    const script = document.createElement('script');
+    script.id = 'jsonp-s';
+    script.src = url;
+    script.onerror = function(){
+      delete window[cbName];
+      script.remove();
+      resolve({ ok: false, error: 'Network error' });
+    };
+    document.head.appendChild(script);
+    setTimeout(()=>{ if(window[cbName]){ delete window[cbName]; script.remove(); resolve({ ok: false, error: 'Timeout' }); } }, 10000);
+  });
 }
  
 async function fetchBookings(){
@@ -1011,4 +1024,3 @@ function showToast(msg){
 </script>
 </body>
 </html>
- 
